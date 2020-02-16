@@ -18,9 +18,37 @@ router.get("/", auth, async (req, res) => {
 });
 
 //add question
-router.post("/", (req, res) => {
-  res.send("add question");
-});
+router.post(
+  "/",
+  [auth],
+  [
+    check("title", "Title cannot be empty")
+      .not()
+      .isEmpty()
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    const { title, description, type } = req.body;
+    try {
+      const newQuestion = new Question({
+        title,
+        description,
+        type,
+        user: req.user.id
+      });
+
+      const question = await newQuestion.save();
+
+      res.json(question);
+    } catch (err) {
+      console.error(er.message);
+      res.status(500).send("Server Error");
+    }
+  }
+);
 
 //update question
 router.put("/:id", (req, res) => {

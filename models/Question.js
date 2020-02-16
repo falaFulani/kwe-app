@@ -11,7 +11,7 @@ const QuestionSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "users"
   },
-  questionType: {
+  type: {
     type: String,
     default: "multiple"
   },
