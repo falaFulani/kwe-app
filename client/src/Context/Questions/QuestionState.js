@@ -13,3 +13,43 @@ import {
   CLEAR_FILTERS,
   QUESTION_ERROR
 } from "../types";
+const QuestionState = props => {
+  const intialState = {
+    questions: [
+      {
+        id: 1,
+        title: "History",
+        decription: "hello there history"
+      },
+      {
+        id: 2,
+        title: "Geography",
+        decription: "hello there geography"
+      }
+    ]
+  };
+  const [state, dispatch] = useReducer(QuestionReducer, intialState);
+  //add question
+
+  //delete
+
+  //set
+
+  //update
+
+  //filter
+
+  //clear
+
+  return (
+    <QuestionContext.Provider
+      value={{
+        questions: state.questions
+      }}
+    >
+      {props.children}
+    </QuestionContext.Provider>
+  );
+};
+
+export default QuestionState;

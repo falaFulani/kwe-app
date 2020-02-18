@@ -1,9 +1,12 @@
 import React from "react";
-
+import Questions from "../Questions/Questions";
 const Home = () => {
   return (
-    <div>
-      <h1> Home page</h1>
+    <div className="grid-2 ">
+      <div>{/*question form */}</div>
+      <div>
+        <Questions />
+      </div>
     </div>
   );
 };
